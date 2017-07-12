@@ -157,7 +157,14 @@ sub send_back_comment{
     }
     
      print "[send_back_comment] method = $post_method to $post_url\n";
-     `curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X $post_method -d '{"body":"$message"}' $post_url`;
+     #`curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X $post_method -d '{"body":"$message"}' $post_url`;
+     
+     if($post_method eq "PATCH"){
+     `curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X DELETE -d '{"body":"$message"}' $post_url`;
+     `curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X POST -d '{"body":"$message"}' $post_url`;
+     }elsif($post_method eq "POST"){
+     `curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X POST -d '{"body":"$message"}' $post_url`;
+     }
 }
 
 #--------------------------------------------------------
