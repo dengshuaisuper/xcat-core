@@ -161,7 +161,7 @@ sub send_back_comment{
      
      if($post_method eq "PATCH"){
      `curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X DELETE $post_url`;
-     `curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X POST -d '{"body":"$message"}' $post_url`;
+     `curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X POST -d '{"body":"$message"}' $comment_url`;
      }elsif($post_method eq "POST"){
      `curl -u "$ENV{'xcatbotuser'}:$ENV{'xcatbotpw'}" -X POST -d '{"body":"$message"}' $post_url`;
      }
